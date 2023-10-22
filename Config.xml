@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wizard>
+    <Page id="ComputerDetails" filename="Page_ComputerDetails.xaml" script="computerdetails.ps1">
+        <Enabled>True</Enabled>
+        <Domain Name="CONTOSO" Value="contoso.com">
+            <DomainOU Name="IT Department" Value="OU=IT,DC=contoso,DC=com" />
+            <DomainOU Name="Finance Department" Value="OU=Finance,DC=contoso,DC=com" />
+        </Domain>
+        <Domain Name="CONTOSA" Value="contosa.com">
+            <DomainOU Name="Sales" Value="OU=Sales,DC=contosa,DC=com" />
+        </Domain>
+    </Page>
+    <Page id="ComputerConfig" filename="Page_ComputerConfig.xaml">
+        <Enabled>True</Enabled>
+    </Page>
+    <Page id="Summary" filename="Page_Summary.xaml">
+        <Enabled>True</Enabled>
+    </Page>
+</wizard>

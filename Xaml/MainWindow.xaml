@@ -1,0 +1,56 @@
+<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+    Title="Operating System Deployment (OSD) Wizard"
+    Width="774" Height="574"
+    ResizeMode="CanMinimize"
+    WindowStartupLocation="CenterScreen"
+    Topmost="True">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="15"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="15"/>
+         </Grid.RowDefinitions>
+
+
+        <Frame x:Name="frame_Pages"
+            Grid.Row="1"
+            Grid.Column="1"
+            NavigationUIVisibility="Hidden"
+            Margin="0,10,0,0" />
+
+        <!--Navigation Buttons below the pages-->
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name = "Btn_Previous" 
+                Content="&#60; Back"
+                Padding="10,0"/>
+            
+            <Button x:Name = "Btn_Next"
+                Content="Next &#62;"
+                Margin="5,0,0,0"
+                Padding="10,0" />
+
+            <Button x:Name = "Btn_Finish"
+                Content="Finish"
+                Margin="12,0,0,0"
+                Padding="10,0"
+                IsEnabled="False" />
+            
+            <Button x:Name = "Btn_Cancel"
+                Content="Cancel"
+                Margin="10,0,0,0"
+                Padding="10,0" />
+
+        </StackPanel>
+
+    </Grid>
+</Window>  

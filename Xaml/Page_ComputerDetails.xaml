@@ -1,0 +1,44 @@
+<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Background="Transparent">
+
+    <Grid>
+        <StackPanel>
+            <GroupBox Header="Type a name for this computer">
+                <Grid Margin="0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Computer name : " FontSize="14" Grid.Column="0" Target="{Binding ElementName=computerName}" />
+                    <TextBox x:Name="computerName" Grid.Column="1" Padding="5,3" Height="25" />
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Network Details" Margin="0,10">
+                <StackPanel>
+                    <Grid Margin="0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Domain : " FontSize="14" Grid.Column="0" Target="{Binding ElementName=domainName}" />
+                        <ComboBox x:Name="domainName" Grid.Column="1" Padding="5,3" Height="25">
+                        </ComboBox>
+                    </Grid>
+                    <Grid Margin="0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Organizatal Unit (OU) : " FontSize="14" Grid.Column="0" Target="{Binding ElementName=domainOU}" />
+                        <ComboBox x:Name="domainOU" Grid.Column="1" Padding="5,3" Height="25">
+                        </ComboBox>
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+            <Label x:Name="lb_ComputerDetailError" FontSize="14" Padding="0" Content="" Foreground="Red" Visibility="Collapsed" />
+
+        </StackPanel>
+    </Grid>
+</Page>
