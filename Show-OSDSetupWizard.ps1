@@ -32,15 +32,23 @@ foreach ($page in $xmlConfig.wizard.Page) {
 
     if ($page.Enabled -eq $True) {
         "Loading page $($page.id)"
-        $pageXml = LoadXml("$PSScriptRoot\Xaml\$($page.filename)")
-        $UIControls.$($page.id) = [Windows.Markup.XamlReader]::Load((New-Object -TypeName System.Xml.XmlNodeReader -ArgumentList $pageXml))
-        $pageXml.SelectNodes("//*[@*[contains(translate(name(.),'n','N'),'Name')]]") | ForEach-Object -Process {
-            $UIControls.$($_.Name) = $UIControls.$($page.id).FindName($_.Name)
+        if (Test-Path "$PSScriptRoot\Xaml\$($page.filename)") {
+            $pageXml = LoadXml("$PSScriptRoot\Xaml\$($page.filename)")
+            $UIControls.$($page.id) = [Windows.Markup.XamlReader]::Load((New-Object -TypeName System.Xml.XmlNodeReader -ArgumentList $pageXml))
+            $pageXml.SelectNodes("//*[@*[contains(translate(name(.),'n','N'),'Name')]]") | ForEach-Object -Process {
+                $UIControls.$($_.Name) = $UIControls.$($page.id).FindName($_.Name)
+            }
+        } else {
+            [System.Windows.MessageBox]::Show("An error occured while loading the config file. `t`n`nFile not found : $PSScriptRoot\Xaml\$($page.filename)", 'Error', 'Ok','Error')
         }
 
         if ($page.script)
         {
-            . "$PSScriptRoot\scripts\$($page.script)"
+            if (Test-Path "$PSScriptRoot\scripts\$($page.script)") {
+                . "$PSScriptRoot\scripts\$($page.script)"
+            } else {
+                [System.Windows.MessageBox]::Show("An error occured while loading the config file. `t`n`nFile not found : $PSScriptRoot\scripts\$($page.script)", 'Error', 'Ok','Error')
+            }
         }
 
         $EnabledPages += $($page.id)
