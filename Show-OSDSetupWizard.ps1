@@ -8,6 +8,15 @@ $script:CurrentPage = 0
 
 $script:HasError = $false
 
+# Try loading TSEnv Object
+try {
+    $TSEnv = New-Object -COMObject Microsoft.SMS.TSEnvironment -ErrorAction SilentlyContinue
+} 
+catch {
+    Write-Warning "Error while loading Microsoft.SMS.TSEnvironment, maybe running outside a TS. Error message : $($_)"
+    [System.Windows.MessageBox]::Show("Error while loading Microsoft.SMS.TSEnvironment, maybe running outside a TS. `t`n`nError message :`n$($_)", 'Error', 'Ok','Error')
+}
+
 
 function LoadXml($filename) {
     $xmlLoader = New-Object System.Xml.XmlDocument
