@@ -60,7 +60,10 @@ foreach ($page in $xmlConfig.wizard.Page) {
             }
         }
 
-        $EnabledPages += $($page.id)
+        $EnabledPages += [PSCustomObject]@{
+            id = $page.id
+            name = $page.name
+        }
     }
 }
 
@@ -74,7 +77,7 @@ $UIControls.btn_Next.Add_Click({
     
     if ($script:HasError -eq $false) {
         $script:CurrentPage++
-        $UIControls.frame_Pages.Content = $UIControls.$($EnabledPages[$script:CurrentPage])
+        $UIControls.frame_Pages.Content = $UIControls.$($EnabledPages[$script:CurrentPage].id)
         $UIControls.Btn_Previous.IsEnabled = $true
     
         if (-Not ($EnabledPages[$script:CurrentPage + 1])) {
@@ -82,6 +85,8 @@ $UIControls.btn_Next.Add_Click({
             $UIControls.Btn_Finish.IsEnabled = $true
         }
     }
+
+    $UIControls.SideMenu.SelectedIndex = $script:CurrentPage
     
     
 })
@@ -89,13 +94,15 @@ $UIControls.btn_Next.Add_Click({
 $UIControls.Btn_Previous.Add_Click({
     
     $script:CurrentPage--
-    $UIControls.frame_Pages.Content = $UIControls.$($EnabledPages[$script:CurrentPage])
+    $UIControls.frame_Pages.Content = $UIControls.$($EnabledPages[$script:CurrentPage].id)
     $UIControls.btn_Next.IsEnabled = $true
     $UIControls.Btn_Finish.IsEnabled = $false
     
     if ($script:CurrentPage -eq 0) {
         $UIControls.Btn_Previous.IsEnabled = $false
     }
+
+    $UIControls.SideMenu.SelectedIndex = $script:CurrentPage
 
 })
 
@@ -112,8 +119,11 @@ $UIControls.btn_Cancel.Add_Click({
 
 # Show first enabled page
 if ($EnabledPages[0]) {
-    $UIControls.frame_Pages.Content = $UIControls.$($EnabledPages[0])
+    $UIControls.frame_Pages.Content = $UIControls.$($EnabledPages[0].id)
     $UIControls.Btn_Previous.IsEnabled = $false
+    $UIControls.SideMenu.ItemsSource = $EnabledPages
+
+    $UIControls.SideMenu.SelectedIndex = $script:CurrentPage
 }
 
 # If no second page enabled
