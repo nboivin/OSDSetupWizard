@@ -1,8 +1,6 @@
 ﻿[System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms')| out-null
 [System.Reflection.Assembly]::LoadWithPartialName('presentationframework') | out-null
 
-# Ref : https://github.com/gbdixg/Show-Win32AppUI/blob/main/Show-Win32AppUI/Show-Win32AppUI.ps1
-
 # Track currentPage
 $script:CurrentPage = 0
 
