@@ -8,7 +8,7 @@ $script:HasError = $false
 
 # Try loading TSEnv Object
 try {
-    $TSEnv = New-Object -COMObject Microsoft.SMS.TSEnvironment -ErrorAction SilentlyContinue
+    $script:TSEnv = New-Object -COMObject Microsoft.SMS.TSEnvironment -ErrorAction SilentlyContinue
 } 
 catch {
     Write-Warning "Error while loading Microsoft.SMS.TSEnvironment, maybe running outside a TS. Error message : $($_)"
@@ -114,6 +114,27 @@ $UIControls.btn_Cancel.Add_Click({
     }
 
 })
+
+$UIControls.Btn_Finish.Add_Click({
+
+    if ($script:HasError -eq $false) {
+        if ($script:OSDComputerName) {
+            Write-Host "OSDComputerName : $script:OSDComputerName"
+            if ($script:TSEnv) {
+                $script:TSEnv.Value("OSDComputerName") = $script:OSDComputerName
+            }
+        }
+
+        if ($script:OSDDomainOUName) {
+            write-Host "OSDDomainOUName : $script:OSDDomainOUName"
+            if ($script:TSEnv) {
+                $script:TSEnv.Value("OSDDomainOUName") = $script:OSDDomainOUName
+            }
+        }
+
+        $UIControls.MainWindow.Close()
+    }
+ })
 
 # Show first enabled page
 if ($EnabledPages[0]) {
