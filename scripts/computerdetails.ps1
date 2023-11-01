@@ -59,4 +59,23 @@ $UIControls.domainName.Add_SelectionChanged({
 
 })
 
+$UIControls.domainOU.Add_SelectionChanged({
+    $_sender = $args[0]
+
+    $script:OSDDomainOUName = (($domainList | Where-Object {$_.Name -eq $UIControls.domainName.SelectedItem}).DomainOU | Where-Object {$_.Name -eq $_sender.SelectedItem}).Value
+})
+
+# Retrieve current computer name value
+if ($script:TSEnv) {
+    if ($script:TSEnv.Value("OSDComputerName")) {
+        $script:OSDComputerName = $script:TSEnv.Value("OSDComputerName")
+    } else {
+        $script:OSDComputerName = $env:COMPUTERNAME
+    }
+} else {
+    $script:OSDComputerName = $env:COMPUTERNAME
+}
+
+$UIControls.computerName.Text = $script:OSDComputerName
+
 Import-DomainList
