@@ -4,7 +4,26 @@
     Background="Transparent">
 
     <Grid>
-        <TextBlock
-            Text="Configuration" />
+        <StackPanel>
+            <GroupBox Header="Computer Configuration">
+                <StackPanel>
+                    <Grid Margin="0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Configuration Type : " FontSize="14" Grid.Column="0" Target="{Binding ElementName=configType}" />
+                        <ComboBox x:Name="configType" Grid.Column="1" Padding="5,3" Height="25">
+                        </ComboBox>
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Description">
+                <StackPanel Margin="5,10">
+                    <Label x:Name="lb_configTypeDescription" Content="Test"/>
+                </StackPanel>
+            </GroupBox>
+            <Label x:Name="lb_ComputerConfigError" FontSize="14" Padding="0" Content="" Foreground="Red" Visibility="Collapsed" />
+        </StackPanel>
     </Grid>
 </Page>

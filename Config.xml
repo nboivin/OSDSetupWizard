@@ -10,8 +10,12 @@
             <DomainOU Name="Sales" Value="OU=Sales,DC=contosa,DC=com" />
         </Domain>
     </Page>
-    <Page id="ComputerConfig" name="Computer Configuration" filename="Page_ComputerConfig.xaml">
+    <Page id="ComputerConfig" name="Computer Configuration" filename="Page_ComputerConfig.xaml" script="computerconfig.ps1">
         <Enabled>True</Enabled>
+        <ConfigType Name="Windows 10 Enterprise" Value="win10ent">
+            <Description>Windows 10 Enterprise 22h2 en-US</Description>
+        </ConfigType>
+        <ConfigType Name="Windows 10 Pro" Value="win10pro"/>
     </Page>
     <Page id="Summary" name="Summary" filename="Page_Summary.xaml">
         <Enabled>True</Enabled>
