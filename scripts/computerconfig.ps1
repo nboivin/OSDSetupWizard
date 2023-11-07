@@ -16,9 +16,9 @@ $UIControls.configType.Add_SelectionChanged({
 
     $description = ($configTypes | Where-Object {$_.Name -eq $_sender.SelectedItem}).Description
     if ($description) {
-        $UIControls.lb_configTypeDescription.Content = "$description"
+        $UIControls.lb_configTypeDescription.Text = "$description"
     } else {
-        $UIControls.lb_configTypeDescription.Content = "No description"
+        $UIControls.lb_configTypeDescription.Text = "No description"
     }
 })
 

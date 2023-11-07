@@ -18,9 +18,9 @@
                     </Grid>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Description">
+            <GroupBox Header="Description" Margin="0,10">
                 <StackPanel Margin="5,10">
-                    <Label x:Name="lb_configTypeDescription" Content="Test"/>
+                    <TextBlock x:Name="lb_configTypeDescription" />
                 </StackPanel>
             </GroupBox>
             <Label x:Name="lb_ComputerConfigError" FontSize="14" Padding="0" Content="" Foreground="Red" Visibility="Collapsed" />
